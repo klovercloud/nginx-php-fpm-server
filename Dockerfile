@@ -27,22 +27,17 @@ RUN apt-get -y update && apt-get install -yq --no-install-recommends gnupg2 curl
       python-pip \
       python-setuptools
 
-RUN pip install wheel \
-    && pip install supervisor
+RUN pip install wheel && pip install supervisor
 
-RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/php.list
-
-RUN apt-get -y update
-
+# Install PHP Extentions
 RUN apt-get install -y php7.4 php7.4-fpm php7.4-common php7.4-mysql php7.4-gmp php7.4-curl php7.4-intl php7.4-mbstring php7.4-xmlrpc php7.4-gd php7.4-xml php7.4-cli php7.4-zip php7.4-bcmath php7.4-soap php7.4-sockets
 
-COPY supervisord.conf /etc/supervisord.conf
+COPY configs/supervisord/supervisord.conf /etc/supervisord.conf
 COPY configs/nginx/. /etc/nginx/.
 COPY configs/php/. /etc/php/7.4/fpm/.
 
 RUN useradd -ms /bin/bash --uid 1000 klovercloud
-COPY index.html /home/klovercloud/app/index.html
+COPY app/. /home/klovercloud/app/.
 
 RUN service php7.4-fpm start
 
@@ -53,9 +48,4 @@ RUN chown -R klovercloud:klovercloud /var/log && chmod -R 777 /var/log
 RUN chown -R klovercloud:klovercloud /var/cache/nginx && chmod -R 777 /var/cache/nginx
 RUN chown -R klovercloud:klovercloud /run/php && chmod -R 777 /run/php/
 
-USER klovercloud
-
 CMD /usr/local/bin/supervisord -n -c /etc/supervisord.conf
-
-
-

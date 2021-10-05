@@ -1,3 +1,4 @@
+<?php ?>
 <!doctype html>
 <html>
 <head>
@@ -7,7 +8,7 @@
   <meta name="author" content="KloverCloud">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>hybridjsapp</title>
+  <title>NGINX - PHP7.4-FPM</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
@@ -28,7 +29,7 @@
   <div id="content" class="flex flex-col justify-center items-center hide">
     <div class="flex flex-row w-full">
       <div class="app-name-container">
-        <span class="header-title">hybridjsapp</span>
+        <span class="header-title">NGINX - PHP7.4-FPM</span>
       </div>
     </div>
 
