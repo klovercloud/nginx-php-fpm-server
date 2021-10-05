@@ -1,6 +1,6 @@
 **Docker Run**
 ```sh
-docker run --rm -it --name=nginx-php -p 8080:8080 klovercloud/nginx-1.20.1-php7.4-fpm:debian-v1.0.0
+docker run --rm -it --name=nginx-php -p 8080:8080 --user=1000 klovercloud/nginx-1.20.1-php7.4-fpm:debian-v1.0.0
 ```
 
 
